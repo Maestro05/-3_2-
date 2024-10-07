@@ -3,13 +3,16 @@
 #include <iostream>
 using namespace std;
 
-int Select(int a, int b, char text[])
+class Order;
+class Food;
+
+int Select(int a, int b, string text)
 {
     int selection;
     do
     {
-        printf("\n%s: ", text);
-        scanf("%d", &selection);
+        cout << "\n" << text << " :";
+        cin >> selection;
     } while (selection < a || selection > b);
 
     return selection;
@@ -26,8 +29,15 @@ private:
         carbohydrates,
         fats,
         price;
+    int count,
+        index;
 public:
-    friend int Select(int a, int b, char text[]);
+    friend Order;
+   
+    Food()
+    {
+        count = 0;
+    }
 
     void Infromation()
     {
@@ -36,12 +46,15 @@ public:
             << "Углеводы: " << this->carbohydrates << endl
             << "Жиры: " << this->fats << endl
             << "Вес: " << this->weight << endl
-            << "Каллорий: " << this->calories << endl
-            << "\n----------------------\n1.Заказать\n\n2.Отмена\n";
-        int choice = Select(1, 2, "Выбор действия");
+            << "Каллорий: " << this->calories << endl;
     }
 
+    void First()
+    {
+        this->name = "Бургер";
+    }
 };
+
 class Order
 {
 private:
@@ -50,18 +63,26 @@ private:
         number,
         sum;
 public:
+    friend int Select(int a, int b, char text[]);
+
     Order()
     {
         sum = count = 0;
         number = 1;
     }
+
     void Korzinka(Food &order)
     {
-
+        cout << order.name << endl;
     }
 };
 int main()
 {
     setlocale(LC_ALL, "rus");
 
+    Food burger;
+    Order zakaz;
+
+    burger.First();
+    zakaz.Korzinka(burger);
 }
