@@ -1,7 +1,7 @@
 ﻿// ЛАБ3_2КУРС.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 #include <iostream>
-using namespace std;
+using namespace std; 
 
 class Order;
 class Food;
@@ -17,20 +17,7 @@ int Select(int a, int b, string text)
 
     return selection;
 }
-void PassStats(Food& food, string name,
-    double price, double calories, double weight,
-    double proteins, double carbohydrates, double fats,
-    int index)
-{
-    food.name = name;
-    food.price = price;
-    food.calories = calories;
-    food.weight = weight;
-    food.proteins = proteins;
-    food.carbohydrates = carbohydrates;
-    food.fats = fats;
-    food.index = index;
-}
+
 class Food
 {
 private:
@@ -60,12 +47,14 @@ public:
 
     void Infromation()
     {
-        cout << "Информация о еде " << this->name << endl
+        cout << "Информация о еде " << this->name << ":" << endl << endl
+            << "Каллорий: " << this->calories << endl
             << "Белки: " << this->proteins << endl
             << "Углеводы: " << this->carbohydrates << endl
             << "Жиры: " << this->fats << endl
             << "Вес: " << this->weight << endl
-            << "Каллорий: " << this->calories << endl;
+            << "Цена: " << this->price << endl
+            << string (18 + this->name.length(), '-') << endl;
     }
 
     void First(int choice)
@@ -83,8 +72,10 @@ private:
     int
         number,
         sum;
+    bool
+        turn;
 public:
-    friend int Select(int a, int b, char text[]);
+    friend int Select(int a, int b, string text);
 
     Order()
     {
@@ -96,12 +87,59 @@ public:
     {
         
     }
+
 };
+
+void PassStats(Food& food, string name,
+    double price, double calories, double weight,
+    double proteins, double carbohydrates, double fats,
+    int index)
+{
+    food.name = name;
+    food.price = price;
+    food.calories = calories;
+    food.weight = weight;
+    food.proteins = proteins;
+    food.carbohydrates = carbohydrates;
+    food.fats = fats;
+    food.index = index;
+}
+
 int main()
 {
     setlocale(LC_ALL, "rus");
 
-    Food burger;
     Order zakaz;
+    Food burger;
 
+    bool turn = true;
+    int choice;
+
+    do
+    {
+        cout << "Добро пожаловать в наше заведение!" << endl << endl
+            << "1.Сделать заказ" << endl << endl
+            << "2.Выйти" << endl;
+        choice = Select(1, 2, "Выбор дейсвия");
+        if (choice == 1)
+        {
+            system("cls");
+            cout << "Оформить заказ" << endl << endl
+                << "1.Главное блюдо" << endl << endl
+                << "2.Закуски" << endl << endl
+                << "3.Десерты" << endl << endl
+                << "4.Комбо" << endl << endl
+                << "5.Напитки" << endl << endl
+                << "6.Милкшейки" << endl << endl
+                << "7.Соусы" << endl << endl
+                << "8.Перейти к корзинке" << endl << endl
+                << "9.Выход" << endl << endl;
+            choice = Select(1, 9, "Выбор дейсвия");
+            if (choice == 1) {}
+            else turn = false;
+        }
+        else turn = false;
+    } while (turn);
+
+    cout << "Спасибо!" << endl;
 }
