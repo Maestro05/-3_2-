@@ -17,7 +17,20 @@ int Select(int a, int b, string text)
 
     return selection;
 }
-
+void PassStats(Food& food, string name,
+    double price, double calories, double weight,
+    double proteins, double carbohydrates, double fats,
+    int index)
+{
+    food.name = name;
+    food.price = price;
+    food.calories = calories;
+    food.weight = weight;
+    food.proteins = proteins;
+    food.carbohydrates = carbohydrates;
+    food.fats = fats;
+    food.index = index;
+}
 class Food
 {
 private:
@@ -31,12 +44,18 @@ private:
         price;
     int count,
         index;
+
 public:
+    friend void PassStats(Food& food, string name,
+        double price, double calories, double weight,
+        double proteins, double carbohydrates, double fats,
+        int index);
+
     friend Order;
-   
+
     Food()
     {
-        count = 0;
+        count = index = 0;
     }
 
     void Infromation()
@@ -49,9 +68,12 @@ public:
             << "Каллорий: " << this->calories << endl;
     }
 
-    void First()
+    void First(int choice)
     {
-        this->name = "Бургер";
+        if(choice == 1) PassStats(*this, "Суп овощной", 360, 200, 330, 9, 15, 4.5, 11);
+        else if (choice == 2) PassStats(*this, "Стейк филе-миньон", 1300, 678, 230, 36.8, 11.5, 41.4, 12);
+        else if (choice == 3) PassStats(*this, "Пицца Пепперони", 579, 1291, 420, 48.3, 47.9, 41.4, 134);
+        else PassStats(*this, "Бурер Двойное мясо", 354.99, 1050, 367, 47, 57, 70, 14);
     }
 };
 
@@ -59,7 +81,6 @@ class Order
 {
 private:
     int
-        count,
         number,
         sum;
 public:
@@ -67,13 +88,13 @@ public:
 
     Order()
     {
-        sum = count = 0;
+        sum = 0;
         number = 1;
     }
 
     void Korzinka(Food &order)
     {
-        cout << order.name << endl;
+        
     }
 };
 int main()
@@ -83,6 +104,4 @@ int main()
     Food burger;
     Order zakaz;
 
-    burger.First();
-    zakaz.Korzinka(burger);
 }
