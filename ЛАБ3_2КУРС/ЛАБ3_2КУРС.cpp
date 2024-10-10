@@ -37,7 +37,7 @@ private:
         index;
 
 public:
-    friend bool PassStats(Food* food, string name,
+    friend void PassStats(Food* food, string name,
         double price, double calories, double weight,
         double proteins, double carbohydrates, double fats,
         int index, int size);
@@ -171,10 +171,13 @@ public:
             cout << "Корзинка Чек №" << this->number << endl << endl;
             for (int i = 0; i < size; i++)
             {
-                cout << food[i].name << setw(47 - food[i].name.length()) 
-                    << food[i].count << " шт. х " << food[i].price << endl;
+                if (food[i].count != 0 )
+                {
+                    cout << food[i].name << setw(47 - food[i].name.length())
+                        << food[i].count << " шт. х " << food[i].price << endl;
 
-                this->sum += food[i].price;
+                    this->sum += food[i].price;
+                }
             }
             cout << string(58, '-') << endl << "Общая сумма заказа:" << endl << this ->sum;
         }
@@ -186,29 +189,31 @@ public:
 
 };
 
-bool PassStats(Food* food, string name,
+void PassStats(Food* food, string name,
     double price, double calories, double weight,
     double proteins, double carbohydrates, double fats,
     int index,int size)
 {
+    bool check = true;
+
     if (size > 1)
     {
         for (int i = 0; i < size; i++)
         {
-            if (food[i].index == index) { return false; }
+            if (food[i].index == index) { check = false; break; }
         }
     }
-
-    food[size - 1].name = name;
-    food[size - 1].price = price;
-    food[size - 1].calories = calories;
-    food[size - 1].weight = weight;
-    food[size - 1].proteins = proteins;
-    food[size - 1].carbohydrates = carbohydrates;
-    food[size - 1].fats = fats;
-    food[size - 1].index = index;
-
-    return true;
+    if (check)
+    {
+        food[size - 1].name = name;
+        food[size - 1].price = price;
+        food[size - 1].calories = calories;
+        food[size - 1].weight = weight;
+        food[size - 1].proteins = proteins;
+        food[size - 1].carbohydrates = carbohydrates;
+        food[size - 1].fats = fats;
+        food[size - 1].index = index;
+    }
 }
 
 int main()
