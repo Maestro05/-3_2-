@@ -165,7 +165,10 @@ private:
     int
         number,
         sum,
-        sumend;
+        sumend,
+        index;
+
+    bool unchange;
 
     Food keep[maxvalue]{};
 public:
@@ -173,7 +176,7 @@ public:
 
     Order()
     {
-        sum = sumend = 0;
+        sum = sumend = index = 0;
         number = 1;
     }
 
@@ -181,23 +184,34 @@ public:
     {
         if (food[0].count != 0)
         {
+
             for (int i = 0; i < size; i++)
             {
-                if (keep[i].index == food[i].index) keep[i].count += food[i].count;
-                else { 
-                    keep[i].index = food[i].index; 
-                    keep[i].count += food[i].count; 
-                    keep[i].name = food[i].name; 
+                this->unchange = true;
+                for (int j = 0; j < this->index + 1; j++)
+                {
+                    if (keep[j].index == food[i].index) {
+                        keep[j].count += food[i].count;
+                        this->unchange = false;
+                        break;
+                    }
+                }
+                if (unchange)
+                {
+                    keep[this->index].name = food[i].name;
+                    keep[this->index].count += food[i].count;
+                    keep[this->index].index = food[i].index;
+                    keep[this->index].price = food[i].price;
+                    this->index++;
                 }
             }
-
             cout << "Корзинка Чек №" << this->number << endl << endl;
             for (int i = 0; i < size; i++)
             {
                 if (food[i].count != 0 )
                 {
                     cout << food[i].name << setw(47 - food[i].name.length())
-                        << food[i].count << " шт. х " << endl;
+                        << food[i].count << " шт. х " << food[i].price << endl;
 
                     this->sum += food[i].price * food[i].count;
                 }
@@ -218,12 +232,12 @@ public:
     {
         cout << "Общие итоги:" << endl << endl;
 
-        for (int i = 0; i < maxvalue; i++)
+        for (int i = 0; i < this->index + 1; i++)
         {
             if (keep[i].count != 0)
             {
                 cout << keep[i].name << setw(47 - keep[i].name.length())
-                    << keep[i].count << " шт. х " << keep[i].price << endl;
+                    << keep[i].count << " шт. х " << endl;
             }
             else break;
         }
