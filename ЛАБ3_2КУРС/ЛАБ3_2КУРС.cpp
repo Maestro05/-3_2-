@@ -237,7 +237,7 @@ public:
             if (keep[i].count != 0)
             {
                 cout << keep[i].name << setw(47 - keep[i].name.length())
-                    << keep[i].count << " шт. х " << endl;
+                    << keep[i].count << " шт. х " << keep[i].price <<endl;
             }
             else break;
         }
