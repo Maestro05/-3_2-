@@ -195,7 +195,7 @@ public:
         }
         else
         {
-            cout << endl << "В корзине пусто";
+            cout << "В корзине пусто";
         }
     }
 
@@ -234,14 +234,17 @@ int main()
 
     Order zakaz;
     
+    string zagadka = "Abuz";
+
     int choice1, 
         choice2, 
-        choice3;
+        choice3,
+        mode;
 
     int size;
-    
+   
     char exit;
-    bool korz;
+
     do
     {
         size = 1;
@@ -415,19 +418,25 @@ int main()
                 else if (choice2 == 8)
                 {
                     system("cls");
-                    zakaz.Korzinka(desk, size);
-                    cout << endl;
-                    do
+                    cout << "Вы уверены ?:" << endl << endl << "1.Да" << endl << "2.Нет" << endl;
+                    choice3 = Select(1, 2, "Выбор действия");
+                    if (choice3 == 1)
                     {
-                        cout << endl << "Нажмите на 1, чтобы вернуться в меню" << endl;
-                    } while ((exit = _getch()) != '1');
+                        system("cls");
+                        zakaz.Korzinka(desk, size);
+                        cout << endl;
+                        do
+                        {
+                            cout << endl << "Нажмите на 1, чтобы вернуться в меню" << endl;
+                        } while ((exit = _getch()) != '1');
+                    }
+                    else choice2 = -1;
                 }
-            } while ( choice2 != 8 && choice2 != 9);
+            } while (choice2 != 8 && choice2 != 9);
             system("cls");
         }
         delete[] desk;
     } while (choice1 != 2);
-
     cout << endl << "Спасибо!" << endl;
     return 0;
 }
