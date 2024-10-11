@@ -15,7 +15,7 @@ int Select(int a, int b, string text)
     string check;
     do
     {
-        cout << "\n" << text << " :";
+        cout << "\n" << text << ": ";
         cin >> check;
         check.find_first_not_of("0123456789") == string::npos ? selection = stoi(check) : selection = 0;
     } while (selection < a || selection > b);
@@ -165,7 +165,7 @@ public:
         number = 1;
     }
 
-    void Korzinka(const Food *food, int size)
+    void Korzinka(const Food* food, int size)
     {
         if (food[0].count != 0)
         {
@@ -230,7 +230,7 @@ int main()
     int size;
     
     char exit;
-
+    bool korz;
     do
     {
         size = 1;
