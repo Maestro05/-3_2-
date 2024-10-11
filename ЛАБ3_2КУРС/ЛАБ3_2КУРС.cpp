@@ -3,6 +3,7 @@
 #include <iostream>
 #include<iomanip>
 #include <string>
+#include<conio.h>
 using namespace std; 
 
 class Order;
@@ -131,15 +132,15 @@ public:
         else PassStats(this, "Соус Чесночный", 60, 110, 25, 1.5, 25, 1, 74, key);
     }
 
-    Food OneMore(const Food *dish, int &size)
+    Food OneMore(/*const Food *dish, */int &size)
     {
-        if (dish[size - 1].count != 0)
+        if (this[size - 1].count != 0)
         {
             Food* food = new Food[size + 1];
-
+            
             for (int i = 0; i < size; i++)
             {
-                food[i] = dish[i];
+                food[i] = this[i];
             }
 
             delete[] this;
@@ -228,6 +229,8 @@ int main()
 
     int size;
     
+    char exit;
+
     do
     {
         size = 1;
@@ -264,6 +267,13 @@ int main()
                             << "4.Бурер Двойное мясо" << endl << endl
                             << "5.Назад" << endl;
                         choice3 = Select(1, 5, "Выбор дейсвия");
+                        if (choice3 != 5)
+                        {
+                            desk->MainDish(choice3, size);
+                            desk->Infromation();
+                            desk->TakeCount(choice3, size);
+                            desk->OneMore(size);
+                        }
                     } while (choice3 != 5);
                 }
                 else if (choice2 == 2)
@@ -277,6 +287,13 @@ int main()
                             << "3.Крылышки" << endl << endl
                             << "4.Стрипсы" << endl << endl
                             << "5.Назад" << endl;
+                        if (choice3 != 5)
+                        {
+                            desk->Snack(choice3, size);
+                            desk->Infromation();
+                            desk->TakeCount(choice3, size);
+                            desk->OneMore(size);
+                        }
                         choice3 = Select(1, 5, "Выбор дейсвия");
                     } while (choice3 != 5);
                 }
@@ -292,6 +309,13 @@ int main()
                             << "4.Горячий брауни" << endl << endl
                             << "5.Назад" << endl;
                         choice3 = Select(1, 5, "Выбор дейсвия");
+                        if (choice3 != 5)
+                        {
+                            desk->Dessert(choice3, size);
+                            desk->Infromation();
+                            desk->TakeCount(choice3, size);
+                            desk->OneMore(size);
+                        }
                     } while (choice3 != 5);
                 }
                 else if (choice2 == 4)
@@ -305,6 +329,13 @@ int main()
                             << "3.5 за 350" << endl << endl
                             << "4.Назад" << endl;
                         choice3 = Select(1, 4, "Выбор дейсвия");
+                        if (choice3 != 4)
+                        {
+                            desk->Combo(choice3, size);
+                            desk->Infromation();
+                            desk->TakeCount(choice3, size);
+                            desk->OneMore(size);
+                        }
                     } while (choice3 != 4);
                 }
                 else if (choice2 == 5)
@@ -319,6 +350,13 @@ int main()
                             << "4.Дюшес" << endl << endl
                             << "5.Назад" << endl;
                         choice3 = Select(1, 5, "Выбор дейсвия");
+                        if (choice3 != 5)
+                        {
+                            desk->Drink(choice3, size);
+                            desk->Infromation();
+                            desk->TakeCount(choice3, size);
+                            desk->OneMore(size);
+                        }
                     } while (choice3 != 5);
                 }
                 else if (choice2 == 6)
@@ -333,6 +371,13 @@ int main()
                             << "4.Ягодный Шейк" << endl << endl
                             << "5.Назад" << endl;
                         choice3 = Select(1, 5, "Выбор дейсвия");
+                        if (choice3 != 5)
+                        {
+                            desk->MilkShake(choice3, size);
+                            desk->Infromation();
+                            desk->TakeCount(choice3, size);
+                            desk->OneMore(size);
+                        }
                     } while (choice3 != 5);
                 }
                 else if (choice2 == 7)
@@ -347,15 +392,25 @@ int main()
                             << "4.Соус Чесночный" << endl << endl
                             << "5.Назад" << endl;
                         choice3 = Select(1, 5, "Выбор дейсвия");
+                        if (choice3 != 5)
+                        {
+                            desk->Sous(choice3, size);
+                            desk->Infromation();
+                            desk->TakeCount(choice3, size);
+                            desk->OneMore(size);
+                        }
                     } while (choice3 != 5);
                 }
                 else if (choice2 == 8)
                 {
                     system("cls");
                     zakaz.Korzinka(desk, size);
+                    do
+                    {
+                        printf("Нажмите на 1, чтобы вернуться в меню\n");
+                    } while ((exit = _getch()) != '1');
                 }
-            } while (choice2 != 9);
-
+            } while ( choice2 != 8 && choice2 != 9);
             system("cls");
             /*delete[] desk;*/
         }
