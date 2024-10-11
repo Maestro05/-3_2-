@@ -96,7 +96,7 @@ public:
         if (choice == 1) PassStats(this, "Суп овощной", 360, 200, 330, 9, 15, 4.5, 11, key);
         else if (choice == 2) PassStats(this, "Стейк филе-миньон", 1300, 678, 230, 36.8, 11.5, 41.4, 12, key);
         else if (choice == 3) PassStats(this, "Пицца Пепперони", 579, 1291, 420, 48.3, 47.9, 41.4, 13, key);
-        else PassStats(this, "Бурер Двойное мясо", 354.99, 1050, 367, 47, 57, 70, 14, key);
+        else PassStats(this, "Бургер Двойное мясо", 354.99, 1050, 367, 47, 57, 70, 14, key);
     }
     void Snack(int choice, int key)
     {
@@ -241,7 +241,7 @@ public:
             }
             else break;
         }
-        cout << string(60, '-') << endl << "Общая сумма заказа: " << this->sumend;
+        cout << string(60, '-') << endl << "Общая сумма заказа: " << this->sumend <<endl;
     }
 
 };
