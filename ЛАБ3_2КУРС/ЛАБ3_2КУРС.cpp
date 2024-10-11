@@ -197,7 +197,7 @@ public:
                 if (food[i].count != 0 )
                 {
                     cout << food[i].name << setw(47 - food[i].name.length())
-                        << food[i].count << " шт. х " << food[i].price << endl;
+                        << food[i].count << " шт. х " << endl;
 
                     this->sum += food[i].price * food[i].count;
                 }
