@@ -19,7 +19,7 @@ int Select(int a, int b, string text)
         cin >> check;
         check.find_first_not_of("0123456789") == string::npos ? selection = stoi(check) : selection = 0;
     } while (selection < a || selection > b);
-
+    cout << endl;
     return selection;
 }
 
@@ -132,20 +132,21 @@ public:
         else PassStats(this, "Соус Чесночный", 60, 110, 25, 1.5, 25, 1, 74, key);
     }
 
-    Food OneMore(/*const Food *dish, */int &size)
+    void OneMore(Food *&dish,int &size)
     {
-        if (this[size - 1].count != 0)
+        if (dish[size - 1].count != 0)
         {
             Food* food = new Food[size + 1];
             
             for (int i = 0; i < size; i++)
             {
-                food[i] = this[i];
+                food[i] = dish[i];
             }
 
-            delete[] this;
+            delete[] dish;
+
+            dish = food;
             size++;
-            return *food;
         }
     }
 };
@@ -272,7 +273,7 @@ int main()
                             desk->MainDish(choice3, size);
                             desk->Infromation();
                             desk->TakeCount(choice3, size);
-                            desk->OneMore(size);
+                            desk->OneMore(desk,size);
                         }
                     } while (choice3 != 5);
                 }
@@ -292,7 +293,7 @@ int main()
                             desk->Snack(choice3, size);
                             desk->Infromation();
                             desk->TakeCount(choice3, size);
-                            desk->OneMore(size);
+                            desk->OneMore(desk,size);
                         }
                         choice3 = Select(1, 5, "Выбор дейсвия");
                     } while (choice3 != 5);
@@ -314,7 +315,7 @@ int main()
                             desk->Dessert(choice3, size);
                             desk->Infromation();
                             desk->TakeCount(choice3, size);
-                            desk->OneMore(size);
+                            desk->OneMore(desk,size);
                         }
                     } while (choice3 != 5);
                 }
@@ -334,7 +335,7 @@ int main()
                             desk->Combo(choice3, size);
                             desk->Infromation();
                             desk->TakeCount(choice3, size);
-                            desk->OneMore(size);
+                            desk->OneMore(desk,size);
                         }
                     } while (choice3 != 4);
                 }
@@ -355,7 +356,7 @@ int main()
                             desk->Drink(choice3, size);
                             desk->Infromation();
                             desk->TakeCount(choice3, size);
-                            desk->OneMore(size);
+                            desk->OneMore(desk,size);
                         }
                     } while (choice3 != 5);
                 }
@@ -376,7 +377,7 @@ int main()
                             desk->MilkShake(choice3, size);
                             desk->Infromation();
                             desk->TakeCount(choice3, size);
-                            desk->OneMore(size);
+                            desk->OneMore(desk,size);
                         }
                     } while (choice3 != 5);
                 }
@@ -397,7 +398,7 @@ int main()
                             desk->Sous(choice3, size);
                             desk->Infromation();
                             desk->TakeCount(choice3, size);
-                            desk->OneMore(size);
+                            desk->OneMore(desk,size);
                         }
                     } while (choice3 != 5);
                 }
