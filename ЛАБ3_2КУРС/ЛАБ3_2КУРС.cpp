@@ -51,16 +51,24 @@ public:
         this->count = this->index = 0;
     }
 
-    void Infromation()
+    void Infromation(int size)
     {
-        cout << endl << "Информация о еде " << this->name << ":" << endl << endl
-            << "Каллорий: " << this->calories << endl
-            << "Белки: " << this->proteins << endl
-            << "Углеводы: " << this->carbohydrates << endl
-            << "Жиры: " << this->fats << endl
-            << "Вес: " << this->weight << endl
-            << "Цена: " << this->price << endl
-            << string(18 + this->name.length(), '-') << endl;
+        bool check = true;
+
+        int value = size - 1;
+
+        for (int i = 0; i < size; i++)
+        {
+            if (this[i].index == this[size-1].index) { value = i; break; }
+        }
+        cout << endl << "Информация о " << this[value].name << ":" << endl << endl
+            << "Каллорий: " << this[value].calories << endl
+            << "Белки: " << this[value].proteins << endl
+            << "Углеводы: " << this[value].carbohydrates << endl
+            << "Жиры: " << this[value].fats << endl
+            << "Вес: " << this[value].weight << endl
+            << "Цена: " << this[value].price << endl
+            << string(18 + this[value].name.length(), '-') << endl;
     }
 
     void TakeCount(int &choice3,int size)
@@ -177,10 +185,10 @@ public:
                     cout << food[i].name << setw(47 - food[i].name.length())
                         << food[i].count << " шт. х " << food[i].price << endl;
 
-                    this->sum += food[i].price;
+                    this->sum += food[i].price * food[i].count;
                 }
             }
-            cout << string(58, '-') << endl << "Общая сумма заказа:" << endl << this ->sum;
+            cout << string(58, '-') << endl << "Общая сумма заказа: " << this ->sum;
         }
         else
         {
@@ -270,7 +278,7 @@ int main()
                         if (choice3 != 5)
                         {
                             desk->MainDish(choice3, size);
-                            desk->Infromation();
+                            desk->Infromation(size);
                             desk->TakeCount(choice3, size);
                             desk->OneMore(desk,size);
                         }
@@ -287,14 +295,14 @@ int main()
                             << "3.Крылышки" << endl << endl
                             << "4.Стрипсы" << endl << endl
                             << "5.Назад" << endl;
+                        choice3 = Select(1, 5, "Выбор дейсвия");
                         if (choice3 != 5)
                         {
                             desk->Snack(choice3, size);
-                            desk->Infromation();
+                            desk->Infromation(size);
                             desk->TakeCount(choice3, size);
                             desk->OneMore(desk,size);
                         }
-                        choice3 = Select(1, 5, "Выбор дейсвия");
                     } while (choice3 != 5);
                 }
                 else if (choice2 == 3)
@@ -312,7 +320,7 @@ int main()
                         if (choice3 != 5)
                         {
                             desk->Dessert(choice3, size);
-                            desk->Infromation();
+                            desk->Infromation(size);
                             desk->TakeCount(choice3, size);
                             desk->OneMore(desk,size);
                         }
@@ -332,7 +340,7 @@ int main()
                         if (choice3 != 4)
                         {
                             desk->Combo(choice3, size);
-                            desk->Infromation();
+                            desk->Infromation(size);
                             desk->TakeCount(choice3, size);
                             desk->OneMore(desk,size);
                         }
@@ -353,7 +361,7 @@ int main()
                         if (choice3 != 5)
                         {
                             desk->Drink(choice3, size);
-                            desk->Infromation();
+                            desk->Infromation(size);
                             desk->TakeCount(choice3, size);
                             desk->OneMore(desk,size);
                         }
@@ -374,7 +382,7 @@ int main()
                         if (choice3 != 5)
                         {
                             desk->MilkShake(choice3, size);
-                            desk->Infromation();
+                            desk->Infromation(size);
                             desk->TakeCount(choice3, size);
                             desk->OneMore(desk,size);
                         }
@@ -395,7 +403,7 @@ int main()
                         if (choice3 != 5)
                         {
                             desk->Sous(choice3, size);
-                            desk->Infromation();
+                            desk->Infromation(size);
                             desk->TakeCount(choice3, size);
                             desk->OneMore(desk,size);
                         }
@@ -407,12 +415,11 @@ int main()
                     zakaz.Korzinka(desk, size);
                     do
                     {
-                        printf("Нажмите на 1, чтобы вернуться в меню\n");
+                        cout << endl << "Нажмите на 1, чтобы вернуться в меню" << endl;;
                     } while ((exit = _getch()) != '1');
                 }
             } while ( choice2 != 8 && choice2 != 9);
             system("cls");
-            /*delete[] desk;*/
         }
         delete[] desk;
     } while (choice1 != 2);
