@@ -87,7 +87,7 @@ public:
             if(unchange) this[size - 1].count += Select(1, 100, "Количество");
             else this[rezerv].count += Select(1, 100, "Количество");
         }
-        else choice3 = 5;
+        else choice3 = -1;
     }
 
     void MainDish(int choice, int key)
@@ -188,7 +188,10 @@ public:
                     this->sum += food[i].price * food[i].count;
                 }
             }
-            cout << string(58, '-') << endl << "Общая сумма заказа: " << this ->sum;
+            cout << string(60, '-') << endl << "Общая сумма заказа: " << this ->sum;
+
+            this->sum = 0;
+            this->number++;
         }
         else
         {
@@ -413,9 +416,10 @@ int main()
                 {
                     system("cls");
                     zakaz.Korzinka(desk, size);
+                    cout << endl;
                     do
                     {
-                        cout << endl << "Нажмите на 1, чтобы вернуться в меню" << endl;;
+                        cout << endl << "Нажмите на 1, чтобы вернуться в меню" << endl;
                     } while ((exit = _getch()) != '1');
                 }
             } while ( choice2 != 8 && choice2 != 9);
