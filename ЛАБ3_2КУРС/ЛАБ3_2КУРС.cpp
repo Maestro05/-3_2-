@@ -4,6 +4,7 @@
 #include<iomanip>
 #include <string>
 #include<conio.h>
+#define maxvalue 27
 using namespace std; 
 
 class Order;
@@ -163,13 +164,16 @@ class Order
 private:
     int
         number,
-        sum;
+        sum,
+        sumend;
+
+    Food keep[maxvalue]{};
 public:
     friend int Select(int a, int b, string text);
 
     Order()
     {
-        sum = 0;
+        sum = sumend = 0;
         number = 1;
     }
 
@@ -177,6 +181,16 @@ public:
     {
         if (food[0].count != 0)
         {
+            for (int i = 0; i < size; i++)
+            {
+                if (keep[i].index == food[i].index) keep[i].count += food[i].count;
+                else { 
+                    keep[i].index = food[i].index; 
+                    keep[i].count += food[i].count; 
+                    keep[i].name = food[i].name; 
+                }
+            }
+
             cout << "Корзинка Чек №" << this->number << endl << endl;
             for (int i = 0; i < size; i++)
             {
@@ -189,7 +203,8 @@ public:
                 }
             }
             cout << string(60, '-') << endl << "Общая сумма заказа: " << this ->sum;
-
+            
+            this->sumend += this->sum;
             this->sum = 0;
             this->number++;
         }
@@ -197,6 +212,22 @@ public:
         {
             cout << "В корзине пусто";
         }
+    }
+
+    void FinalCount()
+    {
+        cout << "Общие итоги:" << endl << endl;
+
+        for (int i = 0; i < maxvalue; i++)
+        {
+            if (keep[i].count != 0)
+            {
+                cout << keep[i].name << setw(47 - keep[i].name.length())
+                    << keep[i].count << " шт. х " << keep[i].price << endl;
+            }
+            else break;
+        }
+        cout << string(60, '-') << endl << "Общая сумма заказа: " << this->sumend;
     }
 
 };
@@ -437,6 +468,7 @@ int main()
         }
         delete[] desk;
     } while (choice1 != 2);
-    cout << endl << "Спасибо!" << endl;
+    cout << endl << "Спасибо!" << endl << endl;
+    zakaz.FinalCount();
     return 0;
 }
