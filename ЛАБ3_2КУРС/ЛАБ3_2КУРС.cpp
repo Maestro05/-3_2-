@@ -19,7 +19,6 @@ int Select(int a, int b, string text)
         cin >> check;
         check.find_first_not_of("0123456789") == string::npos ? selection = stoi(check) : selection = 0;
     } while (selection < a || selection > b);
-    cout << endl;
     return selection;
 }
 
@@ -54,7 +53,7 @@ public:
 
     void Infromation()
     {
-        cout << "Информация о еде " << this->name << ":" << endl << endl
+        cout << endl << "Информация о еде " << this->name << ":" << endl << endl
             << "Каллорий: " << this->calories << endl
             << "Белки: " << this->proteins << endl
             << "Углеводы: " << this->carbohydrates << endl
@@ -214,8 +213,8 @@ void PassStats(Food* food, string name,
         food[size - 1].proteins = proteins;
         food[size - 1].carbohydrates = carbohydrates;
         food[size - 1].fats = fats;
-        food[size - 1].index = index;
     }
+    food[size - 1].index = index;
 }
 
 int main()
