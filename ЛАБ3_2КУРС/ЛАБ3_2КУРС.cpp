@@ -297,7 +297,7 @@ int main()
         cout << "\x1b[33mДобро пожаловать в наше заведение!\x1b[0m" << endl << endl
             << "\x1b[32m1.Сделать заказ\x1b[0m" << endl << endl
             << "\x1b[31m2.Выйти\x1b[0m" << endl;
-        choice1 = Select(1, 2, "Выбор дейсвия");
+        choice1 = Select(1, 2, "\x1b[33mВыбор дейсвия\x1b[0m");
         if (choice1 == 1)
         {
             do
@@ -313,7 +313,7 @@ int main()
                     << "\x1b[32m7.Соусы\x1b[0m" << endl << endl
                     << "\x1b[33m8.Перейти к корзинке\x1b[0m" << endl << endl
                     << "\x1b[31m9.На главное меню\x1b[33m" << endl;
-                choice2 = Select(1, 9, "Выбор дейсвия");
+                choice2 = Select(1, 9, "\x1b[33mВыбор дейсвия\x1b[0m");
                 if (choice2 == 1)
                 {
                     do
@@ -325,7 +325,7 @@ int main()
                             << "\x1b[32m3.Пицца Пепперони\x1b[0m" << endl << endl
                             << "\x1b[32m4.Бургер Двойное мясо\x1b[0m" << endl << endl
                             << "\x1b[31m5.Назад\x1b[0m" << endl;
-                        choice3 = Select(1, 5, "Выбор дейсвия");
+                        choice3 = Select(1, 5, "\x1b[33mВыбор дейсвия\x1b[0m");
                         if (choice3 != 5)
                         {
                             desk->MainDish(choice3, size);
@@ -346,7 +346,7 @@ int main()
                             << "\x1b[32m3.Крылышки\x1b[0m" << endl << endl
                             << "\x1b[32m4.Стрипсы\x1b[0m" << endl << endl
                             << "\x1b[31m5.Назад\x1b[0m" << endl;
-                        choice3 = Select(1, 5, "Выбор дейсвия");
+                        choice3 = Select(1, 5, "\x1b[33mВыбор дейсвия\x1b[0m");
                         if (choice3 != 5)
                         {
                             desk->Snack(choice3, size);
@@ -367,7 +367,7 @@ int main()
                             << "\x1b[32m3.Пирожное Муравейник\x1b[0m" << endl << endl
                             << "\x1b[32m4.Горячий брауни\x1b[0m" << endl << endl
                             << "\x1b[31m5.Назад\x1b[0m" << endl;
-                        choice3 = Select(1, 5, "Выбор дейсвия");
+                        choice3 = Select(1, 5, "\x1b[33mВыбор дейсвия\x1b[0m");
                         if (choice3 != 5)
                         {
                             desk->Dessert(choice3, size);
@@ -387,7 +387,7 @@ int main()
                             << "\x1b[32m2.5 за 300\x1b[0m" << endl << endl
                             << "\x1b[32m3.5 за 350\x1b[0m" << endl << endl
                             << "\x1b[31m4.Назад\x1b[0m" << endl;
-                        choice3 = Select(1, 4, "Выбор дейсвия");
+                        choice3 = Select(1, 4, "\x1b[33mВыбор дейсвия\x1b[0m");
                         if (choice3 != 4)
                         {
                             desk->Combo(choice3, size);
