@@ -62,13 +62,13 @@ public:
         {
             if (this[i].index == this[size-1].index) { value = i; break; }
         }
-        cout << endl << "Информация о " << this[value].name << ":" << endl << endl
-            << "Каллорий: " << this[value].calories << endl
-            << "Белки: " << this[value].proteins << endl
-            << "Углеводы: " << this[value].carbohydrates << endl
-            << "Жиры: " << this[value].fats << endl
-            << "Вес: " << this[value].weight << endl
-            << "Цена: " << this[value].price << endl
+        cout << endl << "\x1b[33mИнформация о\x1b[0m " << this[value].name << "\x1b[33m:\x1b[0m" << endl << endl
+            << "\x1b[33mКаллорий:\x1b[0m " << this[value].calories << endl
+            << "\x1b[33mБелки:\x1b[0m " << this[value].proteins << endl
+            << "\x1b[33mУглеводы:\x1b[0m " << this[value].carbohydrates << endl
+            << "\x1b[33mЖиры:\x1b[0m " << this[value].fats << endl
+            << "\x1b[33mВес:\x1b[0m " << this[value].weight << endl
+            << "\x1b[33mЦена:\x1b[0m " << this[value].price << endl
             << string(18 + this[value].name.length(), '-') << endl;
     }
 
@@ -77,16 +77,16 @@ public:
         int choice , rezerv; 
         bool unchange = true;
 
-        cout << "1.Выбрать" << endl << "2.Отмена" << endl;
-        choice = Select(1, 2, "Выбор действия");
+        cout << "\x1b[32m1.Выбрать\x1b[0m" << endl << "\x1b[31m2.Отмена\x1b[0m" << endl;
+        choice = Select(1, 2, "\x1b[33mВыбор действия\x1b[0m");
 
         if (choice == 1) { 
             for (int i = 0; i < size; i++)
             {
                 if (this[i].index == this[size - 1].index) { rezerv = i; unchange = false; break; }
             }
-            if(unchange) this[size - 1].count += Select(1, 100, "Количество");
-            else this[rezerv].count += Select(1, 100, "Количество");
+            if(unchange) this[size - 1].count += Select(1, 100, "\x1b[33mКоличество\x1b[0m");
+            else this[rezerv].count += Select(1, 100, "\x1b[33mКоличество\x1b[0m");
         }
         else choice3 = -1;
     }
@@ -136,7 +136,7 @@ public:
     {
         if (choice == 1) PassStats(this, "Томатный Соус", 60, 110, 25, 1.5, 25, 1, 71, key);
         else if (choice == 2) PassStats(this, "Соус Сырный", 60, 110, 25, 1.5, 25, 1, 72, key);
-        else if (choice == 3) PassStats(this, "Соус Барбеню", 60, 110, 25, 1.5, 25, 1, 73, key);
+        else if (choice == 3) PassStats(this, "Соус Барбекю", 60, 110, 25, 1.5, 25, 1, 73, key);
         else PassStats(this, "Соус Чесночный", 60, 110, 25, 1.5, 25, 1, 74, key);
     }
 
@@ -205,7 +205,7 @@ public:
                     this->index++;
                 }
             }
-            cout << "Корзинка Чек №" << this->number << endl << endl;
+            cout << "\x1b[33mКорзинка Чек №\x1b[0m" << this->number << endl << endl;
             for (int i = 0; i < size; i++)
             {
                 if (food[i].count != 0 )
@@ -216,7 +216,7 @@ public:
                     this->sum += food[i].price * food[i].count;
                 }
             }
-            cout << string(60, '-') << endl << "Общая сумма заказа: " << this ->sum;
+            cout << string(60, '-') << endl << "\x1b[33mОбщая сумма заказа:\x1b[0m " << this ->sum;
             
             this->sumend += this->sum;
             this->sum = 0;
@@ -224,13 +224,13 @@ public:
         }
         else
         {
-            cout << "В корзине пусто";
+            cout << "\x1b[33mВ корзине пусто\x1b[0m";
         }
     }
 
     void FinalCount()
     {
-        cout << "Общие итоги:" << endl << endl;
+        cout << "\x1b[33mОбщие итоги:\x1b[0m" << endl << endl;
 
         for (int i = 0; i < this->index + 1; i++)
         {
@@ -241,7 +241,7 @@ public:
             }
             else break;
         }
-        cout << string(60, '-') << endl << "Общая сумма заказа: " << this->sumend <<endl;
+        cout << string(60, '-') << endl << "\x1b[33mОбщая сумма заказа:\x1b[0m " << this->sumend <<endl;
     }
 
 };
@@ -294,37 +294,37 @@ int main()
     {
         size = 1;
         Food *desk = new Food[size];
-        cout << "Добро пожаловать в наше заведение!" << endl << endl
-            << "1.Сделать заказ" << endl << endl
-            << "2.Выйти" << endl;
+        cout << "\x1b[33mДобро пожаловать в наше заведение!\x1b[0m" << endl << endl
+            << "\x1b[32m1.Сделать заказ\x1b[0m" << endl << endl
+            << "\x1b[31m2.Выйти\x1b[0m" << endl;
         choice1 = Select(1, 2, "Выбор дейсвия");
         if (choice1 == 1)
         {
             do
             {
                 system("cls");
-                cout << "Оформить заказ" << endl << endl
-                    << "1.Главное блюдо" << endl << endl
-                    << "2.Закуски" << endl << endl
-                    << "3.Десерты" << endl << endl
-                    << "4.Комбо" << endl << endl
-                    << "5.Напитки" << endl << endl
-                    << "6.Милкшейки" << endl << endl
-                    << "7.Соусы" << endl << endl
-                    << "8.Перейти к корзинке" << endl << endl
-                    << "9.На главное меню" << endl;
+                cout << "\x1b[33mОформить заказ\x1b[0m" << endl << endl
+                    << "\x1b[32m1.Главное блюдо\x1b[0m" << endl << endl
+                    << "\x1b[32m2.Закуски\x1b[0m" << endl << endl
+                    << "\x1b[32m3.Десерты\x1b[0m" << endl << endl
+                    << "\x1b[32m4.Комбо\x1b[0m" << endl << endl
+                    << "\x1b[32m5.Напитки\x1b[0m" << endl << endl
+                    << "\x1b[32m6.Милкшейки\x1b[0m" << endl << endl
+                    << "\x1b[32m7.Соусы\x1b[0m" << endl << endl
+                    << "\x1b[33m8.Перейти к корзинке\x1b[0m" << endl << endl
+                    << "\x1b[31m9.На главное меню\x1b[33m" << endl;
                 choice2 = Select(1, 9, "Выбор дейсвия");
                 if (choice2 == 1)
                 {
                     do
                     {
                         system("cls");
-                        cout << "Оформить Главное блюдо:" << endl << endl
-                            << "1.Суп овощной" << endl << endl
-                            << "2.Стейк филе-миньон" << endl << endl
-                            << "3.Пицца Пепперони" << endl << endl
-                            << "4.Бурер Двойное мясо" << endl << endl
-                            << "5.Назад" << endl;
+                        cout << "\x1b[33mОформить Главное блюдо:\x1b[0m" << endl << endl
+                            << "\x1b[32m1.Суп овощной\x1b[33m" << endl << endl
+                            << "\x1b[32m2.Стейк филе-миньон\x1b[0m" << endl << endl
+                            << "\x1b[32m3.Пицца Пепперони\x1b[0m" << endl << endl
+                            << "\x1b[32m4.Бургер Двойное мясо\x1b[0m" << endl << endl
+                            << "\x1b[31m5.Назад\x1b[0m" << endl;
                         choice3 = Select(1, 5, "Выбор дейсвия");
                         if (choice3 != 5)
                         {
@@ -340,12 +340,12 @@ int main()
                     do
                     {
                         system("cls");
-                        cout << "Оформить Закуски:" << endl << endl
-                            << "1.Картошка фри" << endl << endl
-                            << "2.Наггетсы" << endl << endl
-                            << "3.Крылышки" << endl << endl
-                            << "4.Стрипсы" << endl << endl
-                            << "5.Назад" << endl;
+                        cout << "\x1b[33mОформить Закуски:\x1b[0m" << endl << endl
+                            << "\x1b[32m1.Картошка фри\x1b[0m" << endl << endl
+                            << "\x1b[32m2.Наггетсы\x1b[0m" << endl << endl
+                            << "\x1b[32m3.Крылышки\x1b[0m" << endl << endl
+                            << "\x1b[32m4.Стрипсы\x1b[0m" << endl << endl
+                            << "\x1b[31m5.Назад\x1b[0m" << endl;
                         choice3 = Select(1, 5, "Выбор дейсвия");
                         if (choice3 != 5)
                         {
@@ -361,12 +361,12 @@ int main()
                     do
                     {
                         system("cls");
-                        cout << "Оформить Десерты:" << endl << endl
-                            << "1.Чизкейк" << endl << endl
-                            << "2.Тирамису" << endl << endl
-                            << "3.Пирожное Муравейник" << endl << endl
-                            << "4.Горячий брауни" << endl << endl
-                            << "5.Назад" << endl;
+                        cout << "\x1b[33mОформить Десерты:\x1b[0m" << endl << endl
+                            << "\x1b[32m1.Чизкейк\x1b[0m" << endl << endl
+                            << "\x1b[32m2.Тирамису\x1b[0m" << endl << endl
+                            << "\x1b[32m3.Пирожное Муравейник\x1b[0m" << endl << endl
+                            << "\x1b[32m4.Горячий брауни\x1b[0m" << endl << endl
+                            << "\x1b[31m5.Назад\x1b[0m" << endl;
                         choice3 = Select(1, 5, "Выбор дейсвия");
                         if (choice3 != 5)
                         {
@@ -382,11 +382,11 @@ int main()
                     do
                     {
                         system("cls");
-                        cout << "Оформить Комбо:" << endl << endl
-                            << "1.5 за 200" << endl << endl
-                            << "2.5 за 300" << endl << endl
-                            << "3.5 за 350" << endl << endl
-                            << "4.Назад" << endl;
+                        cout << "\x1b[33mОформить Комбо:\x1b[0m" << endl << endl
+                            << "\x1b[32m1.5 за 200\x1b[0m" << endl << endl
+                            << "\x1b[32m2.5 за 300\x1b[0m" << endl << endl
+                            << "\x1b[32m3.5 за 350\x1b[0m" << endl << endl
+                            << "\x1b[31m4.Назад\x1b[0m" << endl;
                         choice3 = Select(1, 4, "Выбор дейсвия");
                         if (choice3 != 4)
                         {
@@ -402,13 +402,13 @@ int main()
                     do
                     {
                         system("cls");
-                        cout << "Оформить Напитки:" << endl << endl
-                            << "1.Эвервесс Кола" << endl << endl
-                            << "2.Фрустайл Апельсин" << endl << endl
-                            << "3.Липтон Грин" << endl << endl
-                            << "4.Дюшес" << endl << endl
-                            << "5.Назад" << endl;
-                        choice3 = Select(1, 5, "Выбор дейсвия");
+                        cout << "\x1b[33mОформить Напитки:\x1b[0m" << endl << endl
+                            << "\x1b[32m1.Эвервесс Кола\x1b[0m" << endl << endl
+                            << "\x1b[32m2.Фрустайл Апельсин\x1b[0m" << endl << endl
+                            << "\x1b[32m3.Липтон Грин\x1b[0m" << endl << endl
+                            << "\x1b[32m4.Дюшес\x1b[0m" << endl << endl
+                            << "\x1b[31m5.Назад\x1b[0m" << endl;
+                        choice3 = Select(1, 5, "\x1b[33mВыбор дейсвия\x1b[0m");
                         if (choice3 != 5)
                         {
                             desk->Drink(choice3, size);
@@ -423,13 +423,13 @@ int main()
                     do
                     {
                         system("cls");
-                        cout << "Оформить Милкшейки:" << endl << endl
-                            << "1.Шоколадный Шейк" << endl << endl
-                            << "2.Шейк Пломбир" << endl << endl
-                            << "3.Клубничный Шейк" << endl << endl
-                            << "4.Ягодный Шейк" << endl << endl
-                            << "5.Назад" << endl;
-                        choice3 = Select(1, 5, "Выбор дейсвия");
+                        cout << "\x1b[33mОформить Милкшейки:\x1b[0m" << endl << endl
+                            << "\x1b[32m1.Шоколадный Шейк\x1b[0m" << endl << endl
+                            << "\x1b[32m2.Шейк Пломбир\x1b[0m" << endl << endl
+                            << "\x1b[32m3.Клубничный Шейк\x1b[0m" << endl << endl
+                            << "\x1b[32m4.Ягодный Шейк\x1b[0m" << endl << endl
+                            << "\x1b[31m5.Назад\x1b[0m" << endl;
+                        choice3 = Select(1, 5, "\x1b[33mВыбор дейсвия\x1b[0m");
                         if (choice3 != 5)
                         {
                             desk->MilkShake(choice3, size);
@@ -444,13 +444,13 @@ int main()
                     do
                     {
                         system("cls");
-                        cout << "Оформить Соус:" << endl << endl
-                            << "1.Томатный Соус" << endl << endl
-                            << "2.Соус Сырный" << endl << endl
-                            << "3.Соус Барбеню" << endl << endl
-                            << "4.Соус Чесночный" << endl << endl
-                            << "5.Назад" << endl;
-                        choice3 = Select(1, 5, "Выбор дейсвия");
+                        cout << "\x1b[33mОформить Соус:\x1b[0m" << endl << endl
+                            << "\x1b[32m1.Томатный Соус\x1b[0m" << endl << endl
+                            << "\x1b[32m2.Соус Сырный\x1b[0m" << endl << endl
+                            << "\x1b[32m3.Соус Барбеню\x1b[0m" << endl << endl
+                            << "\x1b[32m4.Соус Чесночный\x1b[0m" << endl << endl
+                            << "\x1b[31m5.Назад\x1b[0m" << endl;
+                        choice3 = Select(1, 5, "\x1b[33mВыбор дейсвия\x1b[0m");
                         if (choice3 != 5)
                         {
                             desk->Sous(choice3, size);
@@ -463,8 +463,8 @@ int main()
                 else if (choice2 == 8)
                 {
                     system("cls");
-                    cout << "Вы уверены ?:" << endl << endl << "1.Да" << endl << "2.Нет" << endl;
-                    choice3 = Select(1, 2, "Выбор действия");
+                    cout << "\x1b[33mВы уверены ?:\x1b[0m" << endl << endl << "\x1b[32m1.Да\x1b[0m" << endl << "\x1b[31m2.Нет\x1b[0m" << endl;
+                    choice3 = Select(1, 2, "\x1b[33mВыбор действия\x1b[0m");
                     if (choice3 == 1)
                     {
                         system("cls");
@@ -472,7 +472,7 @@ int main()
                         cout << endl;
                         do
                         {
-                            cout << endl << "Нажмите на 1, чтобы вернуться в меню" << endl;
+                            cout << endl << "\x1b[33mНажмите на 1, чтобы вернуться в меню\x1b[0m" << endl;
                         } while ((exit = _getch()) != '1');
                     }
                     else choice2 = -1;
@@ -482,7 +482,7 @@ int main()
         }
         delete[] desk;
     } while (choice1 != 2);
-    cout << endl << "Спасибо!" << endl << endl;
+    cout << endl << "\x1b[33mСпасибо!\x1b[0m" << endl << endl;
     zakaz.FinalCount();
     return 0;
 }
